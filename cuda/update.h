@@ -153,7 +153,7 @@ __device__ void Update(Cell<T> &cell, Node n, ZCoeff<T> zcoeff, const T d,
     //
     // Note that the c-value for auxiliary threads must be set to `1`.
     //
-    val = cell.Get(n) + cell.Get(n.AsC()) * Curl(cell, n, zcoeff, p, isaux);
+    val = cell.Get(n) - d * cell.Get(n.AsC()) * Curl(cell, n, zcoeff, p, isaux);
   } else { // n.ehc == H.
     val = cell.Get(n) + d * Curl(cell, n, zcoeff, p, isaux);
   }
